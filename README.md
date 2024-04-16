@@ -3,7 +3,7 @@
 1. Clone project
 2. Install dependencies with:
 ```bash
-$ yarn install
+$ yarn
 ```
 3. Clone .env.template and rename to .env 
 4. Change environment variables
@@ -16,5 +16,5 @@ $ docker-compose up -d
 6. Run project with:
 
 ```bash
-$ yarn run start
+$ yarn start:dev
 ```
