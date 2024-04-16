@@ -4,7 +4,7 @@
 
 ## Posts API
 
-1. Up data base with docker
+## Up data base with docker
 ```bash
 $ docker-compose up -d
 ```
