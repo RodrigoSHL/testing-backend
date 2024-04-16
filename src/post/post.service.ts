@@ -3,6 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -35,24 +36,25 @@ export class PostService {
     return this.postRepository.find();
   }
 
+  async findOne(term: string) {
+    const post = await this.postRepository.findOneBy({ id: term });
+    console.log('post', post);
+
+    if (!post) throw new NotFoundException(`Product with ${term} not found`);
+
+    return post;
+  }
+
   async remove(id: string) {
-    try {
-      const result = await this.postRepository.delete(id);
-      if (result.affected === 0) {
-        return `Post with ID ${id} not found`;
-      }
-      return 'Post deleted successfully';
-    } catch (error) {
-      console.log(error);
-      this.handleDBExceptions(error);
-    }
+    const product = await this.findOne(id);
+    await this.postRepository.remove(product);
+    return product;
   }
 
   private handleDBExceptions(error: any) {
     if (error.code === '23505') throw new BadRequestException(error.detail);
 
     this.logger.error(error);
-    // console.log(error)
     throw new InternalServerErrorException(
       'Unexpected error, check server logs',
     );
