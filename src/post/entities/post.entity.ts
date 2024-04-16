@@ -8,6 +8,14 @@ export class PostEntity {
   @Column('text')
   name: string;
 
-  @Column('text')
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
   description: string;
+
+  @Column({
+    type: 'timestamp',
+  })
+  createdAt: Date;
 }

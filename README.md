@@ -1,21 +1,19 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
 ## Posts API
 
-## Up data base with docker
+1. Clone project
+2. Install dependencies with:
+```bash
+$ yarn install
+```
+3. Clone .env.template and rename to .env 
+4. Change environment variables
+5. Build database with:
+
 ```bash
 $ docker-compose up -d
 ```
 
-## Installation
-
-```bash
-$ yarn install
-```
-
-## Running the app
+6. Run project with:
 
 ```bash
 $ yarn run start
